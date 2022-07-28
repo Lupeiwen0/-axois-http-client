@@ -1,0 +1,48 @@
+{
+  "name": "@axios/http-client",
+  "version": "1.0.0",
+  "description": "axios of http-client",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "build": "vite build --mode production"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "types": "./src/index.d.ts",
+  "keywords": [
+    "axios",
+    "http-clint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "peerDependencies": {
+    "axios": "^0.27.2",
+    "qs": "^6.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "qs": "^6.11.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182",
+    "@types/node": "^18.0.6",
+    "@types/qs": "^6.9.7",
+    "lodash": "^4.17.21",
+    "sass": "^1.53.0",
+    "vite": "^3.0.2"
+  }
+}
