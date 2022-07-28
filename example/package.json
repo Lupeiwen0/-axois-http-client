@@ -1,6 +1,5 @@
 {
   "name": "@axios/http-client-example",
-  "private": false,
   "version": "1.0.0",
   "type": "module",
   "scripts": {

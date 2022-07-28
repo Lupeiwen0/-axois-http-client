@@ -8,7 +8,6 @@
   "scripts": {
     "build": "vite build --mode production"
   },
-  "private": false,
   "files": [
     "dist",
     "src"
@@ -30,6 +29,7 @@
     "type": "git",
     "url": "https://github.com/Lupeiwen0/-axois-http-client.git"
   },
+  "private": false,
   "peerDependencies": {
     "axios": "^0.27.2",
     "qs": "^6.11.0"
