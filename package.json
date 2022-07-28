@@ -8,6 +8,7 @@
   "scripts": {
     "build": "vite build --mode production"
   },
+  "private": false,
   "files": [
     "dist",
     "src"
