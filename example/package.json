@@ -6,7 +6,7 @@
     "dev": "vite"
   },
   "dependencies": {
-    "axios-http-client": "^1.0.0",
+    "axios-http-client": "^1.0.1",
     "vue": "^3.2.37"
   },
   "devDependencies": {
