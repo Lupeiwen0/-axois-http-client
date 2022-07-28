@@ -3,9 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue'
 
-import HttpClient from '../../src/index'
-import type { HttpClientConfig, ProxyConfig, HttpClientRequestConfig } from '../../src/types/index'
-
+import HttpClient, { HttpClientConfig, ProxyConfig, HttpClientRequestConfig }  from 'axios-http-client'
 
 const config:HttpClientConfig = {
   baseURL: '/api',

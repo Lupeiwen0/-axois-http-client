@@ -1,3 +1,4 @@
+import HttpClient from "./index";
 import type {
   HttpClientRequestConfig,
   HttpClientResponse,
@@ -19,3 +20,5 @@ export {
   HttpClientConfig,
   ProxyConfig,
 };
+
+export default HttpClient;
