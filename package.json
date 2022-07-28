@@ -1,5 +1,5 @@
 {
-  "name": "@axios/http-client",
+  "name": "axios-http-client",
   "version": "1.0.0",
   "description": "axios of http-client",
   "directories": {
