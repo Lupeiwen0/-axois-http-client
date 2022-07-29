@@ -1,6 +1,6 @@
 {
-  "name": "@axios/http-client-example",
-  "version": "1.0.0",
+  "name": "axios-http-client-example",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite"

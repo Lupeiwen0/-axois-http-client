@@ -1,6 +1,6 @@
 var ka = Object.defineProperty;
 var Wa = (r, e, t) => e in r ? ka(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t;
-var B = (r, e, t) => (Wa(r, typeof e != "symbol" ? e + "" : e, t), t);
+var D = (r, e, t) => (Wa(r, typeof e != "symbol" ? e + "" : e, t), t);
 var Ne = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function za(r) {
   return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
@@ -375,8 +375,8 @@ var Mr = mi, Tt = Mr.custom, Ct = kn(Tt) ? Tt : null, Ri = function r(e, t, n, a
     a = [];
   else if (Wn(a, e) >= 0)
     return "[Circular]";
-  function l(E, C, M) {
-    if (C && (a = Ci.call(a), a.push(C)), M) {
+  function l(E, C, B) {
+    if (C && (a = Ci.call(a), a.push(C)), B) {
       var k = {
         depth: i.depth
       };
@@ -440,7 +440,7 @@ var Mr = mi, Tt = Mr.custom, Ct = kn(Tt) ? Tt : null, Ri = function r(e, t, n, a
   if (Di(e))
     return we(l(String(e)));
   if (!Ii(e) && !Rt(e)) {
-    var j = De(e, l), H = Et ? Et(e) === Object.prototype : e instanceof Object || e.constructor === Object, D = e instanceof Object ? "" : "null prototype", G = !H && R && Object(e) === e && R in e ? Xr.call(X(e), 8, -1) : D ? "Object" : "", F = H || typeof e.constructor != "function" ? "" : e.constructor.name ? e.constructor.name + " " : "", A = F + (G || D ? "[" + q.call(Ot.call([], G || [], D || []), ": ") + "] " : "");
+    var j = De(e, l), H = Et ? Et(e) === Object.prototype : e instanceof Object || e.constructor === Object, F = e instanceof Object ? "" : "null prototype", G = !H && R && Object(e) === e && R in e ? Xr.call(X(e), 8, -1) : F ? "Object" : "", M = H || typeof e.constructor != "function" ? "" : e.constructor.name ? e.constructor.name + " " : "", A = M + (G || F ? "[" + q.call(Ot.call([], G || [], F || []), ": ") + "] " : "");
     return j.length === 0 ? A + "{}" : p ? A + "{" + Lr(j, p) + "}" : A + "{ " + q.call(j, ", ") + " }";
   }
   return String(e);
@@ -897,8 +897,8 @@ var Yr = Jr, he = vi, Vi = Ri, Qi = Yr("%TypeError%"), Fe = Yr("%WeakMap%", !0),
     if (s) {
       var Z = v ? t : s(t, P.encoder, g, "key", l);
       if (n === "comma" && v) {
-        for (var j = _o.call(String(h), ","), H = "", D = 0; D < j.length; ++D)
-          H += (D === 0 ? "" : ",") + d(s(j[D], P.encoder, g, "value", l));
+        for (var j = _o.call(String(h), ","), H = "", F = 0; F < j.length; ++F)
+          H += (F === 0 ? "" : ",") + d(s(j[F], P.encoder, g, "value", l));
         return [d(Z) + (a && W(h) && j.length === 1 ? "[]" : "") + "=" + H];
       }
       return [d(Z) + "=" + d(s(h, P.encoder, g, "value", l))];
@@ -908,19 +908,19 @@ var Yr = Jr, he = vi, Vi = Ri, Qi = Yr("%TypeError%"), Fe = Yr("%WeakMap%", !0),
   var G = [];
   if (typeof h > "u")
     return G;
-  var F;
+  var M;
   if (n === "comma" && W(h))
-    F = [{ value: h.length > 0 ? h.join(",") || null : void 0 }];
+    M = [{ value: h.length > 0 ? h.join(",") || null : void 0 }];
   else if (W(u))
-    F = u;
+    M = u;
   else {
     var A = Object.keys(h);
-    F = f ? A.sort(f) : A;
+    M = f ? A.sort(f) : A;
   }
-  for (var E = a && W(h) && h.length === 1 ? t + "[]" : t, C = 0; C < F.length; ++C) {
-    var M = F[C], k = typeof M == "object" && typeof M.value < "u" ? M.value : h[M];
+  for (var E = a && W(h) && h.length === 1 ? t + "[]" : t, C = 0; C < M.length; ++C) {
+    var B = M[C], k = typeof B == "object" && typeof B.value < "u" ? B.value : h[B];
     if (!(o && k === null)) {
-      var Ga = W(h) ? typeof n == "function" ? n(E, M) : E : E + (c ? "." + M : "[" + M + "]");
+      var Ga = W(h) ? typeof n == "function" ? n(E, B) : E : E + (c ? "." + B : "[" + B + "]");
       $.set(e, _);
       var mt = Vn();
       mt.set(dr, $), Qn(G, r(
@@ -2419,7 +2419,7 @@ function _n() {
       }
       var H = a(l.baseURL, l.url);
       y.open(l.method.toUpperCase(), n(H, l.params, l.paramsSerializer), !0), y.timeout = l.timeout;
-      function D() {
+      function F() {
         if (!!y) {
           var A = "getAllResponseHeaders" in y ? i(y.getAllResponseHeaders()) : null, E = !S || S === "text" || S === "json" ? y.responseText : y.response, C = {
             data: E,
@@ -2436,8 +2436,8 @@ function _n() {
           }, C), y = null;
         }
       }
-      if ("onloadend" in y ? y.onloadend = D : y.onreadystatechange = function() {
-        !y || y.readyState !== 4 || y.status === 0 && !(y.responseURL && y.responseURL.indexOf("file:") === 0) || setTimeout(D);
+      if ("onloadend" in y ? y.onloadend = F : y.onreadystatechange = function() {
+        !y || y.readyState !== 4 || y.status === 0 && !(y.responseURL && y.responseURL.indexOf("file:") === 0) || setTimeout(F);
       }, y.onabort = function() {
         !y || (g(new u("Request aborted", u.ECONNABORTED, l, y)), y = null);
       }, y.onerror = function() {
@@ -2459,9 +2459,9 @@ function _n() {
       }), r.isUndefined(l.withCredentials) || (y.withCredentials = !!l.withCredentials), S && S !== "json" && (y.responseType = l.responseType), typeof l.onDownloadProgress == "function" && y.addEventListener("progress", l.onDownloadProgress), typeof l.onUploadProgress == "function" && y.upload && y.upload.addEventListener("progress", l.onUploadProgress), (l.cancelToken || l.signal) && (_ = function(A) {
         !y || (g(!A || A && A.type ? new f() : A), y.abort(), y = null);
       }, l.cancelToken && l.cancelToken.subscribe(_), l.signal && (l.signal.aborted ? _() : l.signal.addEventListener("abort", _))), $ || ($ = null);
-      var F = c(H);
-      if (F && ["http", "https", "file"].indexOf(F) === -1) {
-        g(new u("Unsupported protocol " + F + ":", u.ERR_BAD_REQUEST, l));
+      var M = c(H);
+      if (M && ["http", "https", "file"].indexOf(M) === -1) {
+        g(new u("Unsupported protocol " + M + ":", u.ERR_BAD_REQUEST, l));
         return;
       }
       y.send($);
@@ -2884,25 +2884,18 @@ lt.exports.default = I;
 const Nr = /* @__PURE__ */ za(Ea.exports);
 class Og {
   constructor(e = {}, t = {}, n = window) {
-    B(this, "baseURL");
-    B(this, "timeout");
-    B(this, "method");
-    B(this, "headers");
-    B(this, "requestBeforeHook");
-    B(this, "responseAfterHook");
-    B(this, "showMessage");
-    B(this, "errorCallback");
-    B(this, "proxyConfig");
-    B(this, "pendingMap");
-    this.baseURL = e.baseURL || "", this.timeout = e.timeout || 60 * 1e3, this.headers = e.headers || {}, this.method = e.method || "GET", this.requestBeforeHook = e.requestBeforeHook, this.responseAfterHook = e.responseAfterHook, this.showMessage = e.showMessage, this.errorCallback = e.errorCallback, this.proxyConfig = Object.assign(
-      {},
-      {
-        code: "code",
-        data: "data",
-        message: "msg"
-      },
-      t
-    ), this.pendingMap = n, this.pendingMap.httpIsPending = /* @__PURE__ */ new Map();
+    D(this, "baseURL");
+    D(this, "timeout");
+    D(this, "method");
+    D(this, "headers");
+    D(this, "requestBeforeHook");
+    D(this, "responseAfterHook");
+    D(this, "showMessage");
+    D(this, "errorCallback");
+    D(this, "proxyConfig");
+    D(this, "pendingMap");
+    D(this, "successCode");
+    this.baseURL = e.baseURL || "", this.timeout = e.timeout || 60 * 1e3, this.headers = e.headers || {}, this.method = e.method || "GET", this.requestBeforeHook = e.requestBeforeHook, this.responseAfterHook = e.responseAfterHook, this.showMessage = e.showMessage, this.errorCallback = e.errorCallback, this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "msg" }, t), Array.isArray(t.successCode) ? this.successCode = t.successCode : this.successCode = [t.successCode || 2e4], this.pendingMap = n, this.pendingMap.httpIsPending = /* @__PURE__ */ new Map();
   }
   setInterceptors(e) {
     e.interceptors.request.use((t) => (this.registerCancelToken(t), this.requestBeforeHook && this.requestBeforeHook(t), t)), e.interceptors.response.use(
@@ -2914,18 +2907,7 @@ class Og {
           return this.responseAfterHook(t.data);
         const s = this.buildResponseData(t.data);
         let u = null;
-        switch (s.code) {
-          case 2e4:
-            u = this.successFull(s, i);
-            break;
-          case 20110:
-            u = this.successFull(s, i);
-            break;
-          default:
-            this.errorCallback && this.errorCallback(s), this.showMessage && o && this.showMessage(s), u = Promise.reject(s);
-            break;
-        }
-        return u;
+        return this.successCode.includes(s.code) ? u = this.successFull(s, i) : (this.errorCallback && this.errorCallback(s), this.showMessage && o && this.showMessage(s), u = Promise.reject(s)), u;
       },
       (t) => Nr.isCancel(t) ? new Promise(() => {
       }) : (this.showMessage && this.showMessage({ code: 500, message: "\u7F51\u7EDC\u9519\u8BEF\uFF1A500" }), this.errorCallback && this.errorCallback(t), Promise.reject(t))

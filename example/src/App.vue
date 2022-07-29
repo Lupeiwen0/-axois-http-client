@@ -6,12 +6,12 @@ import HelloWorld from './components/HelloWorld.vue'
 import HttpClient, { HttpClientConfig, ProxyConfig, HttpClientRequestConfig }  from 'axios-http-client'
 
 const config:HttpClientConfig = {
-  baseURL: '/api',
+  baseURL: '/user',
   timeout: 10 * 1000,
   headers: {},
-  showMessage: ({ code, message }) => console.log(message, code ),
-  errorCallback: (error) => console.log(error),
-  requestBeforeHook: (config) => console.log('requestBeforeHook: ', config),
+  showMessage: ({ code, message }) => console.log('showMessage: ', code, message),
+  errorCallback: (error) => console.log('errorCallback: ', error),
+  // requestBeforeHook: (config) => console.log('requestBeforeHook: ', config),
   // 使用自定义响应钩子，默认响应处理将会失效
   // responseAfterHook: (response) => {
   //   console.log('responseAfterHook: ', response);
@@ -19,19 +19,20 @@ const config:HttpClientConfig = {
   // }
 }
 
-const proxyConfig:ProxyConfig = {}
+const proxyConfig:ProxyConfig = {
+  successCode: 20000
+}
 
 const http = new HttpClient(config, proxyConfig)
 
 const option:HttpClientRequestConfig = {
-  url: 'auth/resources',
+  url: '/profile',
   method: 'GET',
   showErrorMessage: true,
   showSuccessMessage: true,
-  useFormData: true,
+  useFormData: false,
 }
 http.request(option).then(res => console.log(res))
-
 
 </script>
 

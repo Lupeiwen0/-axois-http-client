@@ -39,4 +39,5 @@ export type ProxyConfig = {
   code?: string;
   data?: string;
   message?: string;
+  successCode?: number | number[];
 };

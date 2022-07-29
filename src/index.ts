@@ -24,6 +24,7 @@ class HttpClient {
   errorCallback?: ErrorCallback;
   proxyConfig: { code: string; data: string; message: string };
   pendingMap: any;
+  successCode: number[];
 
   constructor(config: HttpClientConfig = {}, proxyConfig: ProxyConfig = {}, pendingInstance: any = window) {
     this.baseURL = config.baseURL || "";
@@ -34,15 +35,15 @@ class HttpClient {
     this.responseAfterHook = config.responseAfterHook;
     this.showMessage = config.showMessage; // 消息弹窗方法
     this.errorCallback = config.errorCallback;
-    this.proxyConfig = Object.assign(
-      {},
-      {
-        code: "code",
-        data: "data",
-        message: "msg",
-      },
-      proxyConfig
-    );
+    this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "message" }, proxyConfig);
+
+    if (Array.isArray(proxyConfig.successCode)) {
+      this.successCode = proxyConfig.successCode;
+    } else {
+      const code = isUndefined(proxyConfig.successCode) ? 20000 : proxyConfig.successCode;
+      this.successCode = [code];
+    }
+
     this.pendingMap = pendingInstance;
 
     // 添加请求拦截器
@@ -75,19 +76,15 @@ class HttpClient {
         // 业务层处理分发
         const body = this.buildResponseData(response.data);
         let result: any = null;
-        switch (body.code) {
-          case 20000: // 请求成功
-            result = this.successFull(body, showSuccessMessage);
-            break;
-          case 20110: // 请求成功 - 但是结果是展示异常
-            result = this.successFull(body, showSuccessMessage);
-            break;
-          default:
-            // 处理异常
-            if (this.errorCallback) this.errorCallback(body);
-            if (this.showMessage && showErrorMessage) this.showMessage(body);
-            result = Promise.reject(body);
-            break;
+
+        if (this.successCode.includes(body.code)) {
+          // 请求成功
+          result = this.successFull(body, showSuccessMessage);
+        } else {
+          // 处理异常
+          if (this.errorCallback) this.errorCallback(body);
+          if (this.showMessage && showErrorMessage) this.showMessage(body);
+          result = Promise.reject(body);
         }
         return result;
       },
@@ -136,6 +133,7 @@ class HttpClient {
     const isCompletelyUrl = url?.startsWith("http");
     // 判断是否使用JSON提交数据
     const data = useFormData ? options.data : qs.stringify(options.data);
+
     // 默认使用 x-www-form 表单提交
     const localHeaders: AxiosRequestHeaders = {
       ...this.headers,
