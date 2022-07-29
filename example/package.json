@@ -1,12 +1,12 @@
 {
   "name": "axios-http-client-example",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite"
   },
   "dependencies": {
-    "axios-http-client": "^1.0.2",
+    "axios-http-client": "^1.0.3",
     "mockjs": "^1.1.0",
     "vue": "^3.2.37"
   },
