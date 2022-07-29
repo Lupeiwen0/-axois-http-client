@@ -50,6 +50,7 @@ type ProxyConfig = {
   code?: string;
   data?: string;
   message?: string;
+  successCode?: number | number[] // 请求成功 code 码
 };
 
 /**
