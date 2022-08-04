@@ -132,7 +132,7 @@ class HttpClient {
     // 判断是否是完整的 请求地址
     const isCompletelyUrl = url?.startsWith("http");
     // 判断是否使用JSON提交数据
-    const data = useFormData ? options.data : qs.stringify(options.data);
+    const data = useFormData ? qs.stringify(options.data) : options.data
 
     // 默认使用 x-www-form 表单提交
     const localHeaders: AxiosRequestHeaders = {

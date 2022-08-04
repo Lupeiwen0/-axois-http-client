@@ -2943,7 +2943,7 @@ class Og {
     this.pendingMap.httpIsPending.delete(n);
   }
   mergeOptions(e = {}) {
-    const { url: t, useFormData: n = !1, headers: a = {} } = e, i = t == null ? void 0 : t.startsWith("http"), o = n ? e.data : Ho.stringify(e.data), s = {
+    const { url: t, useFormData: n = !1, headers: a = {} } = e, i = t == null ? void 0 : t.startsWith("http"), o = n ? Ho.stringify(e.data) : e.data, s = {
       ...this.headers,
       "Content-Type": n ? "application/x-www-form-urlencoded" : "application/json"
     };
