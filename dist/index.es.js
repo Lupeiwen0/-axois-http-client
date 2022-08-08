@@ -2908,10 +2908,10 @@ class Og {
     e.interceptors.request.use((t) => (this.registerCancelToken(t), this.requestBeforeHook && this.requestBeforeHook(t), t)), e.interceptors.response.use(
       (t) => {
         const { url: n = "", method: a = "GET", showSuccessMessage: i = !1, showErrorMessage: o = !0 } = t.config;
-        if (this.removeCancelToken(n, a), this.successCallBack && this.successCallBack(t.data), bs(t.data))
+        if (this.removeCancelToken(n, a), this.successCallBack && this.successCallBack(t), bs(t.data))
           return t.data;
         if (this.responseAfterHook)
-          return this.responseAfterHook(t.data);
+          return this.responseAfterHook(t);
         const s = this.buildResponseData(t.data);
         let u = null;
         return this.successCode.includes(s.code) ? u = this.successFull(s, i) : (this.errorCallback && this.errorCallback(s), this.showMessage && o && this.showMessage(s), u = Promise.reject(s)), u;

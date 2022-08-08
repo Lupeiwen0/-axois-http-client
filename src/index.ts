@@ -69,13 +69,13 @@ class HttpClient {
         // 响应结束 删除pending状态的http
         this.removeCancelToken(url, method);
         // successCallBack
-        this.successCallBack && this.successCallBack(response.data)
+        this.successCallBack && this.successCallBack(response)
         // 文件流
         if (isArrayBuffer(response.data)) return response.data;
 
         // 自定义响应处理
         if (this.responseAfterHook) {
-          return this.responseAfterHook(response.data);
+          return this.responseAfterHook(response);
         }
 
         // 业务层处理分发
