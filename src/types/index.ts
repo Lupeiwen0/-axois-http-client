@@ -5,6 +5,7 @@ export interface HttpClientRequestConfig extends AxiosRequestConfig {
   showSuccessMessage?: Boolean;
   showErrorMessage?: Boolean;
   repeatReq?: Boolean;
+  showLoading?: Boolean
 }
 
 export interface HttpClientResponse<T = any> {
@@ -35,6 +36,7 @@ export type HttpClientConfig = {
   responseAfterHook?: ResponseAfterHook;
   showMessage?: ShowMessage;
   errorCallback?: ErrorCallback;
+  successCallBack?: SuccessCallback
 };
 
 export type ProxyConfig = {

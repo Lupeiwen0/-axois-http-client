@@ -37,6 +37,7 @@ class HttpClient {
     this.responseAfterHook = config.responseAfterHook;
     this.showMessage = config.showMessage; // 消息弹窗方法
     this.errorCallback = config.errorCallback;
+    this.successCallBack = config.successCallBack;
     this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "message" }, proxyConfig);
 
     if (Array.isArray(proxyConfig.successCode)) {

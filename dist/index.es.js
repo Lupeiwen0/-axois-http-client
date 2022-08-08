@@ -2896,7 +2896,7 @@ class Og {
     N(this, "proxyConfig");
     N(this, "pendingMap");
     N(this, "successCode");
-    if (this.baseURL = e.baseURL || "", this.timeout = e.timeout || 60 * 1e3, this.headers = e.headers || {}, this.method = e.method || "GET", this.requestBeforeHook = e.requestBeforeHook, this.responseAfterHook = e.responseAfterHook, this.showMessage = e.showMessage, this.errorCallback = e.errorCallback, this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "message" }, t), Array.isArray(t.successCode))
+    if (this.baseURL = e.baseURL || "", this.timeout = e.timeout || 60 * 1e3, this.headers = e.headers || {}, this.method = e.method || "GET", this.requestBeforeHook = e.requestBeforeHook, this.responseAfterHook = e.responseAfterHook, this.showMessage = e.showMessage, this.errorCallback = e.errorCallback, this.successCallBack = e.successCallBack, this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "message" }, t), Array.isArray(t.successCode))
       this.successCode = t.successCode;
     else {
       const a = Dt(t.successCode) ? 2e4 : t.successCode;
