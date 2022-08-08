@@ -6,6 +6,7 @@ import type {
   ResponseAfterHook,
   ShowMessage,
   ErrorCallback,
+  SuccessCallback,
   HttpClientConfig,
   ProxyConfig,
 } from "./types/index";
@@ -17,6 +18,7 @@ export {
   ResponseAfterHook,
   ShowMessage,
   ErrorCallback,
+  SuccessCallback,
   HttpClientConfig,
   ProxyConfig,
 };

@@ -24,6 +24,8 @@ export type ShowMessage = (options: { code: number; message: string }) => void;
 
 export type ErrorCallback = (data: any) => void;
 
+export type SuccessCallback = (data: any) => void;
+
 export type HttpClientConfig = {
   baseURL?: string;
   timeout?: number;

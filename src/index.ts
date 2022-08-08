@@ -9,6 +9,7 @@ import type {
   ResponseAfterHook,
   ShowMessage,
   ErrorCallback,
+  SuccessCallback,
   HttpClientRequestConfig,
   HttpClientResponse,
 } from "./types/index";
@@ -22,6 +23,7 @@ class HttpClient {
   responseAfterHook?: ResponseAfterHook;
   showMessage?: ShowMessage;
   errorCallback?: ErrorCallback;
+  successCallBack?: SuccessCallback;
   proxyConfig: { code: string; data: string; message: string };
   pendingMap: any;
   successCode: number[];
@@ -65,6 +67,8 @@ class HttpClient {
         const { url = "", method = "GET", showSuccessMessage = false, showErrorMessage = true } = response.config;
         // 响应结束 删除pending状态的http
         this.removeCancelToken(url, method);
+        // successCallBack
+        this.successCallBack && this.successCallBack(response.data)
         // 文件流
         if (isArrayBuffer(response.data)) return response.data;
 

@@ -1,6 +1,6 @@
 var Wa = Object.defineProperty;
 var za = (r, e, t) => e in r ? Wa(r, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : r[e] = t;
-var D = (r, e, t) => (za(r, typeof e != "symbol" ? e + "" : e, t), t);
+var N = (r, e, t) => (za(r, typeof e != "symbol" ? e + "" : e, t), t);
 var Ne = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function Ka(r) {
   return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
@@ -2592,26 +2592,26 @@ var lg = function(e) {
       e.transformResponse
     ))), Promise.reject(a);
   });
-}, N = T, Ua = function(e, t) {
+}, D = T, Ua = function(e, t) {
   t = t || {};
   var n = {};
   function a(c, p) {
-    return N.isPlainObject(c) && N.isPlainObject(p) ? N.merge(c, p) : N.isPlainObject(p) ? N.merge({}, p) : N.isArray(p) ? p.slice() : p;
+    return D.isPlainObject(c) && D.isPlainObject(p) ? D.merge(c, p) : D.isPlainObject(p) ? D.merge({}, p) : D.isArray(p) ? p.slice() : p;
   }
   function i(c) {
-    if (N.isUndefined(t[c])) {
-      if (!N.isUndefined(e[c]))
+    if (D.isUndefined(t[c])) {
+      if (!D.isUndefined(e[c]))
         return a(void 0, e[c]);
     } else
       return a(e[c], t[c]);
   }
   function o(c) {
-    if (!N.isUndefined(t[c]))
+    if (!D.isUndefined(t[c]))
       return a(void 0, t[c]);
   }
   function s(c) {
-    if (N.isUndefined(t[c])) {
-      if (!N.isUndefined(e[c]))
+    if (D.isUndefined(t[c])) {
+      if (!D.isUndefined(e[c]))
         return a(void 0, e[c]);
     } else
       return a(void 0, t[c]);
@@ -2651,9 +2651,9 @@ var lg = function(e) {
     responseEncoding: s,
     validateStatus: u
   };
-  return N.forEach(Object.keys(e).concat(Object.keys(t)), function(p) {
+  return D.forEach(Object.keys(e).concat(Object.keys(t)), function(p) {
     var l = f[p] || i, d = l(p);
-    N.isUndefined(d) && l !== u || (n[p] = d);
+    D.isUndefined(d) && l !== u || (n[p] = d);
   }), n;
 }, Cr, Rn;
 function qa() {
@@ -2884,17 +2884,18 @@ lt.exports.default = I;
 const Nr = /* @__PURE__ */ Ka(Pa.exports);
 class Og {
   constructor(e = {}, t = {}, n = window) {
-    D(this, "baseURL");
-    D(this, "timeout");
-    D(this, "method");
-    D(this, "headers");
-    D(this, "requestBeforeHook");
-    D(this, "responseAfterHook");
-    D(this, "showMessage");
-    D(this, "errorCallback");
-    D(this, "proxyConfig");
-    D(this, "pendingMap");
-    D(this, "successCode");
+    N(this, "baseURL");
+    N(this, "timeout");
+    N(this, "method");
+    N(this, "headers");
+    N(this, "requestBeforeHook");
+    N(this, "responseAfterHook");
+    N(this, "showMessage");
+    N(this, "errorCallback");
+    N(this, "successCallBack");
+    N(this, "proxyConfig");
+    N(this, "pendingMap");
+    N(this, "successCode");
     if (this.baseURL = e.baseURL || "", this.timeout = e.timeout || 60 * 1e3, this.headers = e.headers || {}, this.method = e.method || "GET", this.requestBeforeHook = e.requestBeforeHook, this.responseAfterHook = e.responseAfterHook, this.showMessage = e.showMessage, this.errorCallback = e.errorCallback, this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "message" }, t), Array.isArray(t.successCode))
       this.successCode = t.successCode;
     else {
@@ -2907,7 +2908,7 @@ class Og {
     e.interceptors.request.use((t) => (this.registerCancelToken(t), this.requestBeforeHook && this.requestBeforeHook(t), t)), e.interceptors.response.use(
       (t) => {
         const { url: n = "", method: a = "GET", showSuccessMessage: i = !1, showErrorMessage: o = !0 } = t.config;
-        if (this.removeCancelToken(n, a), bs(t.data))
+        if (this.removeCancelToken(n, a), this.successCallBack && this.successCallBack(t.data), bs(t.data))
           return t.data;
         if (this.responseAfterHook)
           return this.responseAfterHook(t.data);
