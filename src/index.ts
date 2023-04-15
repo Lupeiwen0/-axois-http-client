@@ -43,7 +43,7 @@ class HttpClient {
     if (Array.isArray(proxyConfig.successCode)) {
       this.successCode = proxyConfig.successCode;
     } else {
-      const code = isUndefined(proxyConfig.successCode) ? 20000 : proxyConfig.successCode;
+      const code = isUndefined(proxyConfig.successCode) ? 0 : proxyConfig.successCode;
       this.successCode = [code];
     }
 
@@ -69,9 +69,9 @@ class HttpClient {
         // 响应结束 删除pending状态的http
         this.removeCancelToken(url, method);
         // successCallBack
-        this.successCallBack && this.successCallBack(response)
+        this.successCallBack && this.successCallBack(response);
         // 文件流
-        if (isArrayBuffer(response.data)) return response.data;
+        if (isArrayBuffer(response.data)) return response;
 
         // 自定义响应处理
         if (this.responseAfterHook) {
@@ -137,7 +137,7 @@ class HttpClient {
     // 判断是否是完整的 请求地址
     const isCompletelyUrl = url?.startsWith("http");
     // 判断是否使用JSON提交数据
-    const data = useFormData ? qs.stringify(options.data) : options.data
+    const data = useFormData ? qs.stringify(options.data) : options.data;
 
     // 默认使用 x-www-form 表单提交
     const localHeaders: AxiosRequestHeaders = {
