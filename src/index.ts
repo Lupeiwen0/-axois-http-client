@@ -95,7 +95,7 @@ class HttpClient {
       },
       (error) => {
         if (axios.isCancel(error)) return new Promise(() => {});
-        if (this.showMessage) this.showMessage(error);
+        if (this.showMessage) this.showMessage(error?.response?.data ?? error);
         if (this.errorCallback) this.errorCallback(error);
         // 对响应错误做点什么
         return Promise.reject(error);
