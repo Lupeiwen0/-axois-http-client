@@ -1,6 +1,6 @@
 {
   "name": "axios-http-client",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "axios of http-client",
   "directories": {
     "example": "example"
