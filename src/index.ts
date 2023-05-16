@@ -1,5 +1,5 @@
 import qs from "qs";
-import { omitBy, isUndefined, isArrayBuffer } from "./utils/lodashChunk";
+import { omitBy, isUndefined } from "./utils/lodashChunk";
 import axios, { AxiosInstance, Method, AxiosRequestHeaders } from "axios";
 
 import type {
@@ -70,8 +70,8 @@ class HttpClient {
         this.removeCancelToken(url, method);
         // successCallBack
         this.successCallBack && this.successCallBack(response);
-        // 文件流
-        if (isArrayBuffer(response.data)) return response;
+        // 是文件流
+        if (response.headers["content-type"] !== "application/json") return response;
 
         // 自定义响应处理
         if (this.responseAfterHook) {
