@@ -2905,7 +2905,7 @@ class dg {
     e.interceptors.request.use((t) => (this.registerCancelToken(t), this.requestBeforeHook && this.requestBeforeHook(t), t)), e.interceptors.response.use(
       (t) => {
         const { url: n = "", method: a = "GET", showSuccessMessage: i = !1, showErrorMessage: o = !0 } = t.config;
-        if (this.removeCancelToken(n, a), this.successCallBack && this.successCallBack(t), t.headers["content-type"] !== "application/json")
+        if (this.removeCancelToken(n, a), this.successCallBack && this.successCallBack(t), !t.headers["content-type"].includes("application/json"))
           return t;
         if (this.responseAfterHook)
           return this.responseAfterHook(t);

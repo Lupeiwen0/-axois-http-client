@@ -71,7 +71,7 @@ class HttpClient {
         // successCallBack
         this.successCallBack && this.successCallBack(response);
         // 是文件流
-        if (response.headers["content-type"] !== "application/json") return response;
+        if (!response.headers["content-type"].includes("application/json")) return response;
 
         // 自定义响应处理
         if (this.responseAfterHook) {
