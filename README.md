@@ -1,18 +1,3 @@
-## 前置依赖  
-
-- qs
-- axios
-
-```
-npm install -S axios qs
-```
-
-## 使用
-
-```
-npm install -S http-client
-```
-
 ## 使用示例
 ```ts
 import HttpClient, { HttpClientConfig, HttpClientRequestConfig } from 'http-client'
@@ -28,7 +13,6 @@ const config:HttpClientConfig = {
 
 const http = new HttpClient(config)
 
-
 // 配置单次请求信息
 const options:HttpClientRequestConfig = { url: '/api/auth' }
 http.request(options).then(res => {
@@ -38,13 +22,14 @@ http.request(options).then(res => {
 ```
 
 
-### 初始化参数
+## 初始化参数
 
 ```ts
 import type { Method, AxiosRequestHeaders, AxiosRequestConfig, AxiosResponseHeaders } from "axios";
 
 /**
  * 响应结果自定义 key 
+ * 不要忘记设置 successCode 的值，避免出现不符合预期的情况
  */
 type ProxyConfig = {
   code?: string;
@@ -62,11 +47,10 @@ type HttpClientConfig = {
   method?: Method; // 公共默认请求方法 默认为 GET
   headers?: AxiosRequestHeaders; // 公共默认请求头
   requestBeforeHook?: RequestBeforeHook; // 公共请求拦截钩子
-  responseAfterHook?: ResponseAfterHook; // 公共响应拦截钩子
+  responseAfterHook?: ResponseAfterHook; // 公共响应拦截钩子 ！！！如果设置了此方法，则公共响应处理则会失效，需要自行处理公共响应拦截
   showMessage?: ShowMessage; // 展示提示信息钩子
   errorCallback?: ErrorCallback; // 响应错误钩子
 };
-
 
 type RequestBeforeHook = (config: HttpClientRequestConfig) => void;
 
@@ -93,4 +77,7 @@ interface HttpClientResponse<T = any> {
 }
 ```
 
+### tips
+
+请求结果如果是文件流，需要是`ArrayBuffer`的格式，响应拦截会返回完整的响应体，否则会造成报错以及不符合预期的情况
 
