@@ -28,7 +28,11 @@ class HttpClient {
   pendingMap: any;
   successCode: number[];
 
-  constructor(config: HttpClientConfig = {}, proxyConfig: ProxyConfig = {}, pendingInstance: any = window) {
+  constructor(
+    config: HttpClientConfig = {},
+    proxyConfig: ProxyConfig = {},
+    pendingInstance: any = window
+  ) {
     this.baseURL = config.baseURL || "";
     this.timeout = config.timeout || 60 * 1000; // 请求超时时间
     this.headers = config.headers || {};
@@ -38,12 +42,18 @@ class HttpClient {
     this.showMessage = config.showMessage; // 消息弹窗方法
     this.errorCallback = config.errorCallback;
     this.successCallBack = config.successCallBack;
-    this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "message" }, proxyConfig);
+    this.proxyConfig = Object.assign(
+      {},
+      { code: "code", data: "data", message: "message" },
+      proxyConfig
+    );
 
     if (Array.isArray(proxyConfig.successCode)) {
       this.successCode = proxyConfig.successCode;
     } else {
-      const code = isUndefined(proxyConfig.successCode) ? 0 : proxyConfig.successCode;
+      const code = isUndefined(proxyConfig.successCode)
+        ? 0
+        : proxyConfig.successCode;
       this.successCode = [code];
     }
 
@@ -65,13 +75,19 @@ class HttpClient {
     // 响应拦截
     instance.interceptors.response.use(
       (response: HttpClientResponse) => {
-        const { url = "", method = "GET", showSuccessMessage = false, showErrorMessage = true } = response.config;
+        const {
+          url = "",
+          method = "GET",
+          showSuccessMessage = false,
+          showErrorMessage = true,
+        } = response.config;
         // 响应结束 删除pending状态的http
         this.removeCancelToken(url, method);
         // successCallBack
         this.successCallBack && this.successCallBack(response);
         // 是文件流
-        if (!response.headers["content-type"].includes("application/json")) return response;
+        if (!response.headers["content-type"].includes("application/json"))
+          return response;
 
         // 自定义响应处理
         if (this.responseAfterHook) {
@@ -94,16 +110,19 @@ class HttpClient {
         return result;
       },
       (error) => {
+        if (this.errorCallback) this.errorCallback(error);
         if (axios.isCancel(error)) return new Promise(() => {});
         if (this.showMessage) this.showMessage(error?.response?.data ?? error);
-        if (this.errorCallback) this.errorCallback(error);
         // 对响应错误做点什么
         return Promise.reject(error);
       }
     );
   }
   // 响应成功
-  successFull(option: { code: number; data: any; message: string }, showSuccessMessage: Boolean) {
+  successFull(
+    option: { code: number; data: any; message: string },
+    showSuccessMessage: Boolean
+  ) {
     // 判断是否需要展示提示信息
     if (this.showMessage && showSuccessMessage) this.showMessage(option);
     return Promise.resolve(option);
@@ -142,7 +161,9 @@ class HttpClient {
     // 默认使用 x-www-form 表单提交
     const localHeaders: AxiosRequestHeaders = {
       ...this.headers,
-      "Content-Type": useFormData ? "application/x-www-form-urlencoded" : "application/json",
+      "Content-Type": useFormData
+        ? "application/x-www-form-urlencoded"
+        : "application/json",
     };
     // 合并请求头
     if (headers) {

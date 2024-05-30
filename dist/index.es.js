@@ -2893,7 +2893,11 @@ class dg {
     N(this, "proxyConfig");
     N(this, "pendingMap");
     N(this, "successCode");
-    if (this.baseURL = e.baseURL || "", this.timeout = e.timeout || 60 * 1e3, this.headers = e.headers || {}, this.method = e.method || "GET", this.requestBeforeHook = e.requestBeforeHook, this.responseAfterHook = e.responseAfterHook, this.showMessage = e.showMessage, this.errorCallback = e.errorCallback, this.successCallBack = e.successCallBack, this.proxyConfig = Object.assign({}, { code: "code", data: "data", message: "message" }, t), Array.isArray(t.successCode))
+    if (this.baseURL = e.baseURL || "", this.timeout = e.timeout || 60 * 1e3, this.headers = e.headers || {}, this.method = e.method || "GET", this.requestBeforeHook = e.requestBeforeHook, this.responseAfterHook = e.responseAfterHook, this.showMessage = e.showMessage, this.errorCallback = e.errorCallback, this.successCallBack = e.successCallBack, this.proxyConfig = Object.assign(
+      {},
+      { code: "code", data: "data", message: "message" },
+      t
+    ), Array.isArray(t.successCode))
       this.successCode = t.successCode;
     else {
       const a = Dt(t.successCode) ? 0 : t.successCode;
@@ -2904,7 +2908,12 @@ class dg {
   setInterceptors(e) {
     e.interceptors.request.use((t) => (this.registerCancelToken(t), this.requestBeforeHook && this.requestBeforeHook(t), t)), e.interceptors.response.use(
       (t) => {
-        const { url: n = "", method: a = "GET", showSuccessMessage: i = !1, showErrorMessage: o = !0 } = t.config;
+        const {
+          url: n = "",
+          method: a = "GET",
+          showSuccessMessage: i = !1,
+          showErrorMessage: o = !0
+        } = t.config;
         if (this.removeCancelToken(n, a), this.successCallBack && this.successCallBack(t), !t.headers["content-type"].includes("application/json"))
           return t;
         if (this.responseAfterHook)
@@ -2915,8 +2924,8 @@ class dg {
       },
       (t) => {
         var n, a;
-        return Nr.isCancel(t) ? new Promise(() => {
-        }) : (this.showMessage && this.showMessage((a = (n = t == null ? void 0 : t.response) == null ? void 0 : n.data) != null ? a : t), this.errorCallback && this.errorCallback(t), Promise.reject(t));
+        return this.errorCallback && this.errorCallback(t), Nr.isCancel(t) ? new Promise(() => {
+        }) : (this.showMessage && this.showMessage((a = (n = t == null ? void 0 : t.response) == null ? void 0 : n.data) != null ? a : t), Promise.reject(t));
       }
     );
   }
