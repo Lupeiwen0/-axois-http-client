@@ -1,11 +1,16 @@
-import type { Method, AxiosRequestHeaders, AxiosRequestConfig, AxiosResponseHeaders } from "axios";
+import type {
+  Method,
+  AxiosRequestHeaders,
+  AxiosRequestConfig,
+  AxiosResponseHeaders,
+} from "axios";
 
 export interface HttpClientRequestConfig extends AxiosRequestConfig {
   useFormData?: Boolean;
   showSuccessMessage?: Boolean;
   showErrorMessage?: Boolean;
   repeatReq?: Boolean;
-  showLoading?: Boolean
+  showLoading?: Boolean;
 }
 
 export interface HttpClientResponse<T = any> {
@@ -23,7 +28,7 @@ export type ResponseAfterHook = (option: HttpClientResponse) => Promise<any>;
 
 export type ShowMessage = (options: { code: number; message: string }) => void;
 
-export type ErrorCallback = (data: any) => void;
+export type ErrorCallback = (data: any, isCancel?: Boolean) => void;
 
 export type SuccessCallback = (data: any) => void;
 
@@ -36,7 +41,7 @@ export type HttpClientConfig = {
   responseAfterHook?: ResponseAfterHook;
   showMessage?: ShowMessage;
   errorCallback?: ErrorCallback;
-  successCallBack?: SuccessCallback
+  successCallBack?: SuccessCallback;
 };
 
 export type ProxyConfig = {

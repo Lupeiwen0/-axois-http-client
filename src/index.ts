@@ -110,9 +110,12 @@ class HttpClient {
         return result;
       },
       (error) => {
-        if (this.errorCallback) this.errorCallback(error);
-        if (axios.isCancel(error)) return new Promise(() => {});
+        if (axios.isCancel(error)) {
+          this.errorCallback?.(error, true);
+          return new Promise(() => {});
+        }
         if (this.showMessage) this.showMessage(error?.response?.data ?? error);
+        this.errorCallback?.(error);
         // 对响应错误做点什么
         return Promise.reject(error);
       }

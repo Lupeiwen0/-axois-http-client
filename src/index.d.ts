@@ -1,4 +1,5 @@
 import HttpClient from "./index";
+
 import type {
   HttpClientRequestConfig,
   HttpClientResponse,

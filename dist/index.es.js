@@ -2923,9 +2923,9 @@ class dg {
         return this.successCode.includes(s.code) ? u = this.successFull(s, i) : (this.errorCallback && this.errorCallback(s), this.showMessage && o && this.showMessage(s), u = Promise.reject(s)), u;
       },
       (t) => {
-        var n, a;
-        return this.errorCallback && this.errorCallback(t), Nr.isCancel(t) ? new Promise(() => {
-        }) : (this.showMessage && this.showMessage((a = (n = t == null ? void 0 : t.response) == null ? void 0 : n.data) != null ? a : t), Promise.reject(t));
+        var n, a, i, o;
+        return Nr.isCancel(t) ? ((n = this.errorCallback) == null || n.call(this, t, !0), new Promise(() => {
+        })) : (this.showMessage && this.showMessage((i = (a = t == null ? void 0 : t.response) == null ? void 0 : a.data) != null ? i : t), (o = this.errorCallback) == null || o.call(this, t), Promise.reject(t));
       }
     );
   }
