@@ -80,6 +80,7 @@ class HttpClient {
           method = "GET",
           showSuccessMessage = false,
           showErrorMessage = true,
+          responseAfterHook,
         } = response.config;
         // 响应结束 删除pending状态的http
         this.removeCancelToken(url, method);
@@ -90,9 +91,8 @@ class HttpClient {
           return response;
 
         // 自定义响应处理
-        if (this.responseAfterHook) {
-          return this.responseAfterHook(response);
-        }
+        const _responseCallback = responseAfterHook ?? this.responseAfterHook;
+        if (_responseCallback) return _responseCallback(response);
 
         // 业务层处理分发
         const body = this.buildResponseData(response.data);
