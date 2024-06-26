@@ -2912,15 +2912,17 @@ class dg {
           url: n = "",
           method: a = "GET",
           showSuccessMessage: i = !1,
-          showErrorMessage: o = !0
+          showErrorMessage: o = !0,
+          responseAfterHook: s
         } = t.config;
         if (this.removeCancelToken(n, a), this.successCallBack && this.successCallBack(t), !t.headers["content-type"].includes("application/json"))
           return t;
-        if (this.responseAfterHook)
-          return this.responseAfterHook(t);
-        const s = this.buildResponseData(t.data);
-        let u = null;
-        return this.successCode.includes(s.code) ? u = this.successFull(s, i) : (this.errorCallback && this.errorCallback(s), this.showMessage && o && this.showMessage(s), u = Promise.reject(s)), u;
+        const u = s != null ? s : this.responseAfterHook;
+        if (u)
+          return u(t);
+        const f = this.buildResponseData(t.data);
+        let c = null;
+        return this.successCode.includes(f.code) ? c = this.successFull(f, i) : (this.errorCallback && this.errorCallback(f), this.showMessage && o && this.showMessage(f), c = Promise.reject(f)), c;
       },
       (t) => {
         var n, a, i, o;
