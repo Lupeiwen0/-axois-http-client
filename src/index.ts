@@ -68,8 +68,9 @@ class HttpClient {
     // 请求拦截
     instance.interceptors.request.use((config: HttpClientRequestConfig) => {
       // 不能重复请求
-      this.registerCancelToken(config);
       if (this.requestBeforeHook) this.requestBeforeHook(config);
+      if (config?.requestBeforeHook) config?.requestBeforeHook(config);
+      this.registerCancelToken(config);
       return config;
     });
     // 响应拦截

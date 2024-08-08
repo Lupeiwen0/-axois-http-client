@@ -21,6 +21,7 @@ export interface HttpClientRequestConfig extends AxiosRequestConfig {
   showErrorMessage?: Boolean;
   repeatReq?: Boolean;
   showLoading?: Boolean;
+  requestBeforeHook?: RequestBeforeHook;
   responseAfterHook?: ResponseAfterHook;
 }
 

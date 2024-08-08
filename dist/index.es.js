@@ -2906,7 +2906,7 @@ class dg {
     this.pendingMap = n, this.pendingMap.httpIsPending = /* @__PURE__ */ new Map();
   }
   setInterceptors(e) {
-    e.interceptors.request.use((t) => (this.registerCancelToken(t), this.requestBeforeHook && this.requestBeforeHook(t), t)), e.interceptors.response.use(
+    e.interceptors.request.use((t) => (this.requestBeforeHook && this.requestBeforeHook(t), t != null && t.requestBeforeHook && (t == null || t.requestBeforeHook(t)), this.registerCancelToken(t), t)), e.interceptors.response.use(
       (t) => {
         const {
           url: n = "",
